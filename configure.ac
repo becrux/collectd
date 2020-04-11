@@ -6581,6 +6581,7 @@ plugin_fscache="no"
 plugin_gps="no"
 plugin_gpu_nvidia="no"
 plugin_grpc="no"
+plugin_gruenbeck="no"
 plugin_hugepages="no"
 plugin_intel_pmu="no"
 plugin_intel_rdt="no"
@@ -6798,6 +6799,10 @@ fi
 
 if test "x$with_libcurl" = "xyes" && test "x$with_libssl" = "xyes" && test "x$with_libyajl" = "xyes" && test "x$with_libyajl2" = "xyes"; then
   plugin_write_stackdriver="yes"
+fi
+
+if test "x$with_libcurl" = "xyes" && test "x$with_libxml2" = "xyes"; then
+  plugin_gruenbeck="yes"
 fi
 
 if test "x$with_libcurl" = "xyes" && test "x$with_libxml2" = "xyes"; then
@@ -7040,6 +7045,7 @@ AC_PLUGIN([gmond],               [$with_libganglia],          [Ganglia plugin])
 AC_PLUGIN([gps],                 [$plugin_gps],               [GPS plugin])
 AC_PLUGIN([gpu_nvidia],          [$with_cuda],                [NVIDIA GPU plugin])
 AC_PLUGIN([grpc],                [$plugin_grpc],              [gRPC plugin])
+AC_PLUGIN([gruenbeck],           [$plugin_gruenbeck],         [Gruenbeck plugin])
 AC_PLUGIN([hddtemp],             [yes],                       [Query hddtempd])
 AC_PLUGIN([hugepages],           [$plugin_hugepages],         [Hugepages statistics])
 AC_PLUGIN([intel_pmu],           [$with_libjevents],          [Intel performance monitor plugin])
@@ -7484,6 +7490,7 @@ AC_MSG_RESULT([    gmond . . . . . . . . $enable_gmond])
 AC_MSG_RESULT([    gps . . . . . . . . . $enable_gps])
 AC_MSG_RESULT([    gpu_nvidia  . . . . . $enable_gpu_nvidia])
 AC_MSG_RESULT([    grpc  . . . . . . . . $enable_grpc])
+AC_MSG_RESULT([    gruenbeck . . . . . . $enable_gruenbeck])
 AC_MSG_RESULT([    hddtemp . . . . . . . $enable_hddtemp])
 AC_MSG_RESULT([    hugepages . . . . . . $enable_hugepages])
 AC_MSG_RESULT([    intel_pmu . . . . . . $enable_intel_pmu])
